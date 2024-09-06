@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CursoJavaApplication<curso_java>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.curso_java.curso_java.CursoJavaApplication",
+            "projectName": "curso_java",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
