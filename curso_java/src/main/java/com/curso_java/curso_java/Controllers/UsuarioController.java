@@ -35,6 +35,7 @@ public class UsuarioController {
         UsuarioRol usuarioRol = new UsuarioRol();
         usuarioRol.setUsuario(usuario);
         usuarioRol.setRol(rol);
+        roles.add(usuarioRol);
 
         return usuarioService.saveUsuario(usuario, roles);
     }
@@ -44,7 +45,7 @@ public class UsuarioController {
         return usuarioService.getOneUser(Username);
     }
 
-    @DeleteMapping("/getById/{usuarioId}")
+    @DeleteMapping("/{usuarioId}")
     public void deleteUser(@PathVariable("usuarioId") Long usuarioId) {
         usuarioService.deleteOneUser(usuarioId);
     }
