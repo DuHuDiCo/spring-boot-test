@@ -1,8 +1,12 @@
 package com.curso_java.curso_java.Models;
 
 public class JwtResponse {
-    
+
     private String token;
+
+    public JwtResponse(String token) {
+        this.token = token;
+    }
 
     public JwtResponse() {
     }
