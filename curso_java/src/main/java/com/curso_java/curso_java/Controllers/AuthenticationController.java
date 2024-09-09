@@ -1,5 +1,7 @@
 package com.curso_java.curso_java.Controllers;
 
+import java.security.Principal;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,12 +11,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.curso_java.curso_java.Conf.JwtUtils;
 import com.curso_java.curso_java.Models.JwtRequest;
 import com.curso_java.curso_java.Models.JwtResponse;
+import com.curso_java.curso_java.Models.Usuario;
 import com.curso_java.curso_java.Services.Impl.UserDetailsServiceImpl;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@RestController
+@RequestMapping("/")
 public class AuthenticationController {
 
     private AuthenticationManager authenticationManager;
@@ -33,6 +42,7 @@ public class AuthenticationController {
         }
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
         String token = this.jwtUtils.generateToken(userDetails);
+        System.out.println(token);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
@@ -44,6 +54,11 @@ public class AuthenticationController {
         } catch (BadCredentialsException badCredentialsException) {
             throw new Exception("Credenciales Inválidas" + badCredentialsException.getMessage());
         }
+    }
+
+    @GetMapping("/actual-usuario")
+    public Usuario getActualUser(Principal principal) {
+        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 
     public AuthenticationController(AuthenticationManager authenticationManager,

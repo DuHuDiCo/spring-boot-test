@@ -54,10 +54,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             } else {
-                System.out.println("Token Inválido");
+                System.out.println("Token");
             }
-            filterChain.doFilter(request, response);
         }
+        filterChain.doFilter(request, response);
 
     }
 
