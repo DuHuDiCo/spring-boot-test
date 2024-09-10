@@ -2,7 +2,6 @@ package com.curso_java.curso_java.Services.Impl;
 
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.curso_java.curso_java.Models.Usuario;
