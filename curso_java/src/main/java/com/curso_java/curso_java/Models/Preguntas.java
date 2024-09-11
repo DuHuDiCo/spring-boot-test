@@ -13,6 +13,9 @@ import javax.persistence.Table;
 @Table(name = "preguntas")
 public class Preguntas {
 
+    public Preguntas() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long preguntaId;
@@ -25,6 +28,7 @@ public class Preguntas {
     private String opcion3;
     private String opcion4;
     private String respuesta;
+    private String respuestaDada;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Examen examen;
@@ -85,15 +89,20 @@ public class Preguntas {
         this.respuesta = respuesta;
     }
 
+    public String getRespuestaDada() {
+        return respuestaDada;
+    }
+
+    public void setRespuestaDada(String respuestaDada) {
+        this.respuestaDada = respuestaDada;
+    }
+
     public Examen getExamen() {
         return examen;
     }
 
     public void setExamen(Examen examen) {
         this.examen = examen;
-    }
-
-    public Preguntas() {
     }
 
 }

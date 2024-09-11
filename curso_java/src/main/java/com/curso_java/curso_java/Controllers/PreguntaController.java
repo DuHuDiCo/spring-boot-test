@@ -2,11 +2,14 @@ package com.curso_java.curso_java.Controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/v1/pregunta")
@@ -57,6 +59,41 @@ public class PreguntaController {
         Collections.shuffle(examenes);
         return ResponseEntity.ok(examenes);
 
+    }
+
+    @GetMapping("/{preguntaId}")
+    public Preguntas getQuestionById(@PathVariable("preguntaId") Long preguntaId) {
+        return preguntaService.getQuestionById(preguntaId);
+    }
+
+    @DeleteMapping("/{preguntaId}")
+    public void deleteQuestion(@PathVariable("preguntaId") Long preguntaId) {
+        preguntaService.deleteQuestion(preguntaId);
+    }
+
+    @PostMapping("/evaluar-examen")
+    public ResponseEntity<?> evaluarExamen(@RequestBody List<Preguntas> preguntas) {
+        double puntosMaximos = 0;
+        Integer respuestasCorrectas = 0;
+        Integer intentos = 0;
+
+        for (Preguntas p : preguntas) {
+            Preguntas pregunta = preguntaService.getPreguntas(p.getPreguntaId());
+            if (pregunta.getRespuesta().equals(p.getRespuestaDada())) {
+                respuestasCorrectas++;
+                double puntos = Double.parseDouble(preguntas.get(0).getExamen().getPuntosMaximos()) / preguntas.size();
+                puntosMaximos += puntos;
+            }
+            if (p.getRespuestaDada() != null) {
+                intentos++;
+            }
+        }
+
+        Map<String, Object> respuestas = new HashMap<>();
+        respuestas.put("puntosMaximos", puntosMaximos);
+        respuestas.put("respuestasCorrectas", respuestasCorrectas);
+        respuestas.put("intentos", intentos);
+        return ResponseEntity.ok(respuestas);
     }
 
 }

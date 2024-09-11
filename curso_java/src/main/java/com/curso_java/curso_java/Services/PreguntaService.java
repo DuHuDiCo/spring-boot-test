@@ -19,4 +19,6 @@ public interface PreguntaService {
 
     void deleteQuestion(Long preguntaId);
 
+    Preguntas getPreguntas(Long preguntaId);
+
 }

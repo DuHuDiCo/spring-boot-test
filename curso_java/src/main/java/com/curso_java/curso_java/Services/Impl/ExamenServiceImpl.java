@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.stereotype.Service;
 
+import com.curso_java.curso_java.Models.Categoria;
 import com.curso_java.curso_java.Models.Examen;
 import com.curso_java.curso_java.Repository.ExamenRepository;
 import com.curso_java.curso_java.Services.ExamenService;
@@ -42,6 +43,11 @@ public class ExamenServiceImpl implements ExamenService {
         Examen examen = new Examen();
         examen.setExamenId(examId);
         examenRepository.delete(examen);
+    }
+
+    @Override
+    public List<Examen> getExamsByCategory(Categoria categoria) {
+        return examenRepository.findByCategoria(categoria);
     }
 
 }
