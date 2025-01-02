@@ -19,11 +19,14 @@ import com.curso_java.curso_java.Models.JwtRequest;
 import com.curso_java.curso_java.Models.JwtResponse;
 import com.curso_java.curso_java.Models.Usuario;
 import com.curso_java.curso_java.Services.Impl.UserDetailsServiceImpl;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthenticationController {
 
     private AuthenticationManager authenticationManager;
