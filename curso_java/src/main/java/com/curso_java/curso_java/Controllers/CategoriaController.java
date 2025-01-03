@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/category")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class CategoriaController {
     private final CategoriaService categoriaService;
 

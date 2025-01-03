@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1/examen")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ExamenController {
 
     private final ExamenService examenService;

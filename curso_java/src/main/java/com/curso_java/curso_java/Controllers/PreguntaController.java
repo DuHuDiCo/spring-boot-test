@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/v1/pregunta")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class PreguntaController {
     private final PreguntaService preguntaService;
 
