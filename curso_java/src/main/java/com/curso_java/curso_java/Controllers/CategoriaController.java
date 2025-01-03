@@ -1,5 +1,6 @@
 package com.curso_java.curso_java.Controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +38,7 @@ public class CategoriaController {
 
     @GetMapping("/")
     public ResponseEntity<?> getAllcategories() {
-        return ResponseEntity.ok(categoriaService.getCategories());
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaService.getCategories());
     }
 
     @PutMapping("/")
