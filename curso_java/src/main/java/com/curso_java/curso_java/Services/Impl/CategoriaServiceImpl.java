@@ -3,6 +3,7 @@ package com.curso_java.curso_java.Services.Impl;
 import java.util.*;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.curso_java.curso_java.Models.Categoria;
 import com.curso_java.curso_java.Repository.CategoriaRepository;
@@ -29,7 +30,16 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Set<Categoria> getCategories() {
-        return new LinkedHashSet<>(categoriaRepository.findAll());
+        List<Categoria> categoriasList = categoriaRepository.findAll();
+        Set<Categoria> categorias = null;
+        if(CollectionUtils.isEmpty(categoriasList)){
+             categorias = new HashSet<>();
+             return categorias;
+        }
+        
+        categorias = new HashSet<>(categoriaRepository.findAll());
+
+        return categorias;
     }
 
     @Override
