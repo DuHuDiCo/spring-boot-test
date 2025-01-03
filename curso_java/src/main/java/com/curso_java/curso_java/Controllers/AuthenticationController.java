@@ -60,8 +60,9 @@ public class AuthenticationController {
     }
 
     @GetMapping("/actual-usuario")
-    public Usuario getActualUser(Principal principal) {
-        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
+    public Usuario getActualUser(String token) {
+        String username = jwtUtils.extractUsername(token);
+        return (Usuario) this.userDetailsService.loadUserByUsername(username);
     }
 
     public AuthenticationController(AuthenticationManager authenticationManager,
