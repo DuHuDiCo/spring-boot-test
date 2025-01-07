@@ -49,7 +49,7 @@ public class ExamenController {
         return examenService.getExamById(examenId);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{examenId}")
     public void deleteExam(@PathVariable("examenId") Long examenId) {
         examenService.deleteExam(examenId);
     }
