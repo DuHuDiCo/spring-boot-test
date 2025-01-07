@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/generate-token","/api/v1/usuarios/", "/api/v1/actual-usuario").permitAll()
+                .antMatchers("/api/v1/generate-token","/api/v1/usuarios/", "/api/v1/actual-usuario", "/api/v1/category/", "/api/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
