@@ -27,7 +27,7 @@ public class Examen {
     private String descripcion;
     private String puntosMaximos;
     private String numeroPreguntas;
-    private boolean active = false;
+    private Boolean active = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoria;
@@ -76,13 +76,8 @@ public class Examen {
         this.numeroPreguntas = numeroPreguntas;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+   
+    
 
     public Categoria getCategoria() {
         return categoria;
@@ -101,6 +96,14 @@ public class Examen {
     }
 
     public Examen() {
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
 }
