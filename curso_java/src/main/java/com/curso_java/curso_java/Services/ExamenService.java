@@ -20,4 +20,6 @@ public interface ExamenService {
 
     List<Examen> getExamsByCategory(Categoria categoria);
 
+    List<Examen> getExamenActive();
+
 }

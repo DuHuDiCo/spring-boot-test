@@ -50,4 +50,9 @@ public class ExamenServiceImpl implements ExamenService {
         return examenRepository.findByCategoria(categoria);
     }
 
+    @Override
+    public List<Examen> getExamenActive() {
+        return examenRepository.findByActive(true);
+    }
+
 }

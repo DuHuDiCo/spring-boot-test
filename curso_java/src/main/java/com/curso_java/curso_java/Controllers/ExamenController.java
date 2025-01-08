@@ -61,4 +61,10 @@ public class ExamenController {
         return examenService.getExamsByCategory(categoria);
     }
 
+    @GetMapping("/activo")
+    public List<Examen> getExamenActivo() {
+
+        return examenService.getExamenActive();
+    }
+
 }
