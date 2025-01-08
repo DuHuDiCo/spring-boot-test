@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.curso_java.curso_java.Models.Categoria;
 import com.curso_java.curso_java.Models.Examen;
+import com.curso_java.curso_java.Repository.CategoriaRepository;
 import com.curso_java.curso_java.Repository.ExamenRepository;
 import com.curso_java.curso_java.Services.ExamenService;
 
@@ -13,9 +14,13 @@ import com.curso_java.curso_java.Services.ExamenService;
 public class ExamenServiceImpl implements ExamenService {
 
     private final ExamenRepository examenRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    public ExamenServiceImpl(ExamenRepository examenRepository) {
+    
+
+    public ExamenServiceImpl(ExamenRepository examenRepository, CategoriaRepository categoriaRepository) {
         this.examenRepository = examenRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
     @Override
@@ -53,6 +58,15 @@ public class ExamenServiceImpl implements ExamenService {
     @Override
     public List<Examen> getExamenActive() {
         return examenRepository.findByActive(true);
+    }
+
+    @Override
+    public List<Examen> getExamensByCategoriaActivo(Long idCategoria) {
+        Categoria categoria = categoriaRepository.findById(idCategoria).orElse(null);
+        if(Objects.isNull(categoria)){
+            return null;
+        }
+        return examenRepository.findByCategoriaAndActive(categoria, true);
     }
 
 }

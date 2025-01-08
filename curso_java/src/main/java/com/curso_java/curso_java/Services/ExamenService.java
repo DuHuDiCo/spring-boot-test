@@ -22,4 +22,6 @@ public interface ExamenService {
 
     List<Examen> getExamenActive();
 
+    List<Examen> getExamensByCategoriaActivo(Long idCategoria);
+
 }

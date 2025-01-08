@@ -15,4 +15,6 @@ public interface ExamenRepository extends JpaRepository<Examen, Long> {
 
     List<Examen> findByActive(boolean active);
 
+    List<Examen> findByCategoriaAndActive(Categoria categoria, Boolean active);
+
 }

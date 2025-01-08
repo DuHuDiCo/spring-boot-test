@@ -67,4 +67,12 @@ public class ExamenController {
         return examenService.getExamenActive();
     }
 
+
+
+    @GetMapping("/categoria/activo/{categoriaId}")
+    public List<Examen> getExamenCategoriaActivo(@PathVariable("categoriaId") Long categoriaId) {
+
+        return examenService.getExamensByCategoriaActivo(categoriaId);
+    }
+
 }
